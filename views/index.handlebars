@@ -1,0 +1,59 @@
+<h1>Burger Chomp!</h1>
+
+<div id="burger-panel">
+
+  <div id="chomped-panel">
+    <h4>Burgers waiting to be chomped:</h4>
+    <ul>
+      {{#each burger}}
+        {{#unless this.chomped}}
+          <li>
+            {{this.burger_name}}
+
+            <form action="burger/update/{{this.id}}?_method=PUT" method="POST">
+              <input type="hidden" name="chomped" value="true">
+              <button class="btn waves-effect waves-light btn" type="submit"><i class="material-icons left">restaurant</i>CHOMP!</button>
+            </form>
+
+            
+          </li>
+        {{/unless}}
+      {{/each}}
+    </ul>
+  </div>
+
+  <img id="yumm" src="/assets/images/burger.png">
+
+  <div id="chomped-panel">
+    <h4>Burgers that have been chomped:</h4>
+    <ul>
+      {{#each burger}}
+        {{#if this.chomped}}
+          <li>
+            {{this.burger_name}}
+
+            <form action="burger/update/{{this.id}}?_method=PUT" method="POST">
+              <input type="hidden" name="chomped" value="false">
+              <button class="btn waves-effect waves-light btn" type="submit"><i class="material-icons left">pregnant_woman</i>Un-chomp?</button>
+            </form>
+          </li>
+        {{/if}}
+      {{/each}}
+    </ul>
+  </div>
+</div>
+
+<div id="add-burger">
+  <div id="input">
+    <h3>Add a burger:</h3>
+    <form class="create-update-form" action="burger/create" method="POST">
+
+      <div class="form-group">
+        <label for="ca">Burger Name:</label>
+        <input type="text" id="ca" name="burger_name">
+      </div>
+
+      <button id="add-burger-button" class="btn waves-effect waves-light btn" type="submit"><i class="material-icons left">playlist_add</i>Add Burger</button>
+    </form>
+  </div>
+</div>
